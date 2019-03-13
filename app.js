@@ -1,7 +1,7 @@
 function showUploader() {
   var htmlTemplate = [
     '<input id="replayupload" type="file" accept=".bcr">',
-    '<button id="uploadreplay" onclick="uploadReplayes()">',
+    '<button id="uploadreplay" onclick="uploadReplays()">',
       'Upload Replays',
     '</button>',
   ];
