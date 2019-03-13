@@ -1,3 +1,19 @@
+var albumBucketName = 'bacon-uploader';
+var bucketRegion = 'us-east-1';
+var IdentityPoolId = 'us-east-1:a7daa586-be94-47b4-bbf0-9f2a67bb1c41';
+
+AWS.config.update({
+  region: bucketRegion,
+  credentials: new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: IdentityPoolId
+  })
+});
+
+var s3 = new AWS.S3({
+  apiVersion: '2006-03-01',
+  params: {Bucket: albumBucketName}
+});
+
 function showUploader() {
   var htmlTemplate = [
     '<input id="replayupload" type="file" accept=".bcr">',
