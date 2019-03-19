@@ -26,20 +26,24 @@ function showUploader() {
 
 function uploadReplays() {
   var files = document.getElementById("replayupload").files;
-  var file = files[0];
-  var fileName = file.name;
+  for (file in files) {
+    var fileName = file.name;
 
-  var objectKey = fileName;
-  s3.upload(
-    {
-      Key: objectKey,
-      Body: file
-    },
-    function(err, data) {
-      if (err) {
-        return alert("There was an error uploading your replay: ", err.message);
+    var objectKey = fileName;
+    s3.upload(
+      {
+        Key: objectKey,
+        Body: file
+      },
+      function(err, data) {
+        if (err) {
+          return console.log(
+            "There was an error uploading your replay: ",
+            err.message
+          );
+        }
+        console.log("Successfully uploaded replay.");
       }
-      alert("Successfully uploaded replays.");
-    }
-  );
+    );
+  }
 }
