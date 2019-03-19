@@ -26,7 +26,8 @@ function showUploader() {
 
 function uploadReplays() {
   var files = document.getElementById("replayupload").files;
-  for (file in files) {
+  for (idx in files) {
+    var file = files[idx];
     var fileName = file.name;
 
     var objectKey = fileName;
