@@ -20,7 +20,7 @@ function uploadReplays() {
   Array.prototype.forEach.call(files, function(file) {
     var fileName = file.name;
 
-    var objectKey = fileName;
+    var objectKey = fileName + "-" + Date.now();
     s3.upload(
       {
         Key: objectKey,
