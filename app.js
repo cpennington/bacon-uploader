@@ -14,20 +14,10 @@ var s3 = new AWS.S3({
   params: { Bucket: bucketName }
 });
 
-function showUploader() {
-  var htmlTemplate = [
-    '<input id="replayupload" type="file" accept=".zip" multiple>',
-    '<button id="uploadreplay" onclick="uploadReplays()">',
-    "Upload Replays",
-    "</button>"
-  ];
-  document.getElementById("app").innerHTML = getHtml(htmlTemplate);
-}
-
 function uploadReplays() {
   var files = document.getElementById("replayupload").files;
-  for (idx in files) {
-    var file = files[idx];
+  const log = document.getElementById("upload-log");
+  Array.prototype.forEach.call(files, function(file) {
     var fileName = file.name;
 
     var objectKey = fileName;
@@ -37,14 +27,28 @@ function uploadReplays() {
         Body: file
       },
       function(err, data) {
+        console.log(err, data);
+        var logMessage = document.createElement("div");
+        var name = document.createElement("span");
+        name.appendChild(document.createTextNode(fileName));
+        logMessage.appendChild(name);
+        var logBody = document.createElement("span");
+        logMessage.appendChild(logBody);
         if (err) {
-          return console.log(
-            "There was an error uploading your replay: ",
-            err.message
+          logBody.appendChild(
+            document.createTextNode(
+              "There was an error uploading your replay: " + err.message
+            )
           );
+          logMessage.classList.add("error");
+        } else {
+          logBody.appendChild(
+            document.createTextNode("Successfully uploaded replay.")
+          );
+          logMessage.classList.add("success");
         }
-        console.log("Successfully uploaded replay.");
+        log.appendChild(logMessage);
       }
     );
-  }
+  });
 }

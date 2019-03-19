@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
-    <script src="./app.js"></script>
-    <script>
-       function getHtml(template) {
-          return template.join('\n');
-       }
-    </script>
-  </head>
-  <body>
-    <h1>BattleCON Replay Uploader</h1>
-    <p>
+<head>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+  <script src="./app.js"></script>
+  <script>
+    function getHtml(template) {
+      return template.join('\n');
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>BattleCON Replay Uploader</h1>
+  <p>
 
-      To upload your replays:
-      <ul>
-        <li>
-          Windows:
-          <ol>
-            <li>Find your .bcr files in %AppData%\Local\BCO_C (or %AppData%\Local\bco_c).</li>
-            <li>Zip up all your .bcr files.</li>
-          </ol>
-        </li>
-        <li>
-          Mac OSX:
-          <ol>
-            <li>Find your .bcr files in $HOME/Library/Application Support/com.level99games.battlecon-mac/</li>
-            <li>Select all the relevant ones, right click, and Compress.</li>
-          </ol>
-        </li>
-        <li>
-          Linux:
-          <ol>
+    To upload your replays:
+    <ul>
+      <li>
+        Windows:
+        <ol>
+          <li>Find your .bcr files in %AppData%\Local\BCO_C (or %AppData%\Local\bco_c).</li>
+          <li>Zip up all your .bcr files.</li>
+        </ol>
+      </li>
+      <li>
+        Mac OSX:
+        <ol>
+          <li>Find your .bcr files in $HOME/Library/Application Support/com.level99games.battlecon-mac/</li>
+          <li>Select all the relevant ones, right click, and Compress.</li>
+        </ol>
+      </li>
+      <li>
+        Linux:
+        <ol>
           <li>Open a Terminal and run the following command, which should create $HOME/Documents/datums.zip:
-                <pre>cd ~/Documents; mkdir datums; find ~/.config -name "*.bcr" -exec cp -p {} datums\;; zip -r datums.zip datums;</pre>
-              </li>
-          </ol>
-        </li>
-      </ul>
-      Click "Choose File" and select the zip file you created, and then click "Upload Replays".
-    </p>
-    <div id="app"></div>
-    <script>
-       showUploader();
-    </script>
-  </body>
+            <pre>cd ~/Documents; mkdir datums; find ~/.config -name "*.bcr" -exec cp -p {} datums\;; zip -r datums.zip datums;</pre>
+          </li>
+        </ol>
+      </li>
+    </ul>
+    Click "Choose File" and select the zip file you created, and then click "Upload Replays".
+  </p>
+  <div id="app">
+    <input id="replayupload" type="file" accept=".zip" multiple>
+    <button id="uploadreplay" onclick="uploadReplays()">
+      Upload Replays
+    </button>
+    <h2>Upload Log</h2>
+    <section id="upload-log">
+    </section>
+  </div>
+</body>
 </html>

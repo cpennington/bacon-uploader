@@ -1,0 +1,11 @@
+#upload-log span {
+  padding: 5px;
+}
+
+#upload-log div.error {
+  background-color: #daa;
+}
+
+#upload-log div.success {
+  background-color: #ada;
+}
