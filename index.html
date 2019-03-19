@@ -12,13 +12,33 @@
   <body>
     <h1>BattleCON Replay Uploader</h1>
     <p>
-      To upload your replays, click "Choose File", and navigate to:
+
+      To upload your replays:
       <ul>
-        <li>Windows: <pre>%AppData%\Local\BCO_C</pre>or<pre>%AppData%\Local\bco_c</pre></li>
-        <li>Mac: <pre>$HOME/Library/Application Support/com.level99games.battlecon-mac/</pre></li>
-        <li>Linux: <pre>~/.config/bco_c/</pre></li>
+        <li>
+          Windows:
+          <ol>
+            <li>Find your .bcr files in %AppData%\Local\BCO_C (or %AppData%\Local\bco_c).</li>
+            <li>Zip up all your .bcr files.</li>
+          </ol>
+        </li>
+        <li>
+          Mac OSX:
+          <ol>
+            <li>Find your .bcr files in $HOME/Library/Application Support/com.level99games.battlecon-mac/</li>
+            <li>Select all the relevant ones, right click, and Compress.</li>
+          </ol>
+        </li>
+        <li>
+          Linux:
+          <ol>
+          <li>Open a Terminal and run the following command, which should create $HOME/Documents/datums.zip:
+                <pre>cd ~/Documents; mkdir datums; find ~/.config -name "*.bcr" -exec cp -p {} datums\;; zip -r datums.zip datums;</pre>
+              </li>
+          </ol>
+        </li>
       </ul>
-      Select all .bcr files, and then click "Upload Replays".
+      Click "Choose File" and select the zip file you created, and then click "Upload Replays".
     </p>
     <div id="app"></div>
     <script>

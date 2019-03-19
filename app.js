@@ -16,7 +16,7 @@ var s3 = new AWS.S3({
 
 function showUploader() {
   var htmlTemplate = [
-    '<input id="replayupload" type="file" accept=".bcr" multiple>',
+    '<input id="replayupload" type="file" accept=".zip" multiple>',
     '<button id="uploadreplay" onclick="uploadReplays()">',
     "Upload Replays",
     "</button>"
